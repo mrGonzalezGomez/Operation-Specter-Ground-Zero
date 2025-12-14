@@ -1,0 +1,20 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Operation Specter: Ground Zero"
+run/main_scene="res://ScenarioScript/Demo/Levels/demo_level.tscn"
+config/features=PackedStringArray("4.5", "Mobile")
+config/icon="uid://48h52lhsq4o2"
+
+[rendering]
+
+renderer/rendering_method="mobile"
