@@ -16,28 +16,30 @@ size = Vector3(5, 0.05, 5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5xgho"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_u52ul"]
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_u52ul"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_u52ul"]
 
 [node name="Level" type="Node3D"]
 
-[node name="FirstPersonCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7066623, 0.707551, 0, -0.707551, 0.7066623, -0.88271415, 3.989431, 1.7044606)
-current = true
-
 [node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
+transform = Transform3D(50, 0, 0, 0, 0.5, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("BoxMesh_5xgho")
 
 [node name="Form" type="StaticBody3D" parent="Floor"]
 
 [node name="Hitbox" type="CollisionShape3D" parent="Floor/Form"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 shape = SubResource("BoxShape3D_u52ul")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+[node name="Player" type="CharacterBody3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 1.9144115)
 script = ExtResource("1_ysshg")
+
+[node name="FirstPersonCamera" type="Camera3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+current = true
+fov = 90.0
 
 [node name="Form" type="MeshInstance3D" parent="Player"]
 mesh = SubResource("CapsuleMesh_vonw3")
@@ -56,15 +58,15 @@ mesh = SubResource("CapsuleMesh_5xgho")
 shape = SubResource("CapsuleShape3D_5xgho")
 
 [node name="VisionCone" type="Area3D" parent="Enemy"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5176027, 0.4222268, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -0.9419546, 0.4222268, 0)
 
-[node name="Form" type="CollisionShape3D" parent="Enemy/VisionCone"]
+[node name="Form" type="MeshInstance3D" parent="Enemy/VisionCone"]
+transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 0.99999994, 0, 0, 0)
+mesh = SubResource("CylinderMesh_u52ul")
+
+[node name="Hitbox" type="CollisionShape3D" parent="Enemy/VisionCone"]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
 shape = SubResource("CylinderShape3D_u52ul")
-
-[node name="Hitbox" type="MeshInstance3D" parent="Enemy/VisionCone"]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CylinderMesh_u52ul")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.77065784, -0.47409645, 0.42581576, 0, 0.6682092, 0.74397343, -0.6372492, -0.57334894, 0.51496065, 4.5295835, 4.244803, 4.2385073)
